@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Generator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      background: radial-gradient(circle, #000000 0%, #111111 100%);
+    }
+
+    h1 {
+      color: #00ffea;
+      text-shadow: 0 0 15px #00ffea;
+      margin-bottom: 20px;
+    }
+
+    #password {
+      font-size: 24px;
+      padding: 10px 20px;
+      background-color: #111;
+      color: #00ff00;
+      border: none;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #00ff00;
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ff00;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      box-shadow: 0 0 20px #00ff00;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>✨ Glowing Password Generator ✨</h1>
+
+  <div id="password">Click "Generate Password"</div>
+
+  <button onclick="generatePassword()">Generate Password</button>
+  <button onclick="copyPassword()">Copy</button>
+
+  <script>
+    function generatePassword() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+      let password = "";
+      for (let i = 0; i < 12; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        password += chars[randomIndex];
+      }
+      document.getElementById("password").textContent = password;
+    }
+
+    function copyPassword() {
+      const passwordText = document.getElementById("password").textContent;
+      navigator.clipboard.writeText(passwordText).then(() => {
+        alert("Password copied to clipboard!");
+      });
+    }
+  </script>
+
+</body>
+</html>
